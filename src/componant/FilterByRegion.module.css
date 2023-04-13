@@ -1,0 +1,35 @@
+.filterWhite {
+  width: 50%;
+  padding: 0 5.5rem;
+  border: none;
+}
+.filterBlack {
+  width: 50%;
+  padding: 0 5.5rem;
+  border: none;
+}
+
+.filtercontrol {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border: none;
+}
+.filterWhite select {
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border: none;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgb(232, 232, 232);
+}
+.filterBlack select {
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border: none;
+  color: white;
+  background-color: rgb(44, 55, 67);
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgb(44, 55, 67);
+}

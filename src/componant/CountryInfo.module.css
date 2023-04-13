@@ -1,0 +1,109 @@
+.containerWhite {
+  display: flex;
+  width: 100%;
+  justify-self: center;
+  flex-direction: column;
+  background-color: rgb(246, 246, 246);
+}
+.containerBlack {
+  display: flex;
+  width: 100%;
+  justify-self: center;
+  flex-direction: column;
+  background-color: rgb(30, 42, 55);
+}
+.container2 {
+  display: grid;
+  margin-bottom: 16rem;
+  grid-template-columns: repeat(2, minmax(0, 80rem));
+}
+.errMsg {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+.errMsgBlack {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btnBlock {
+  padding: 4rem 8rem;
+}
+.btnWhite {
+  border: none;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgb(232, 232, 232);
+}
+.btnBlack {
+  border: none;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: rgb(44, 55, 67);
+  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgb(44, 55, 67);
+}
+.textGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 35rem));
+}
+.imgBlock {
+  justify-self: center;
+  padding: 3rem 0;
+  width: 80%;
+}
+.img {
+  display: flex;
+  width: 100%;
+  height: 30rem;
+  border-radius: 0.5rem;
+}
+.textBlock {
+  padding: 6rem 0rem;
+}
+.textWhite {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: black;
+}
+.textBlack {
+  font-weight: bold;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+.text2Black {
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 0rem;
+}
+.text2White {
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 0rem;
+}
+
+.linkBlock {
+  flex-direction: row;
+}
+.linkWhite {
+  color: black;
+  text-decoration: none;
+  padding: 1rem;
+  font-weight: bold;
+  text-shadow: 0.1rem 0.1rem 0.8rem black;
+}
+.linkBlack {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  font-weight: bold;
+  text-shadow: 0.1rem 0.1rem 0.8rem white;
+}
+.arrow {
+  padding: 0 1rem;
+}

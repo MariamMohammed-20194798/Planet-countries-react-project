@@ -1,0 +1,35 @@
+.whiteHeader {
+  display: flex;
+  width: 100%;
+  border-bottom: 0.2rem solid rgb(241, 239, 239);
+}
+.blackHeader {
+  display: flex;
+  width: 100%;
+  background-color: rgb(44, 55, 67);
+  border-bottom: 0.2rem solid rgb(26, 36, 46);
+}
+.h2White {
+  width: 85%;
+  text-align: left;
+  padding: 0.1rem 5rem;
+}
+.h2Black {
+  color: #ffff;
+  width: 85%;
+  text-align: left;
+  padding: 0rem 5rem;
+}
+.darkModeText {
+  width: 15%;
+  padding: 0.4rem 6rem;
+  color: #ffff;
+  text-align: right;
+  text-decoration: none;
+}
+.whiteModeText {
+  width: 15%;
+  padding: 0.4rem 6rem;
+  text-align: right;
+  text-decoration: none;
+}

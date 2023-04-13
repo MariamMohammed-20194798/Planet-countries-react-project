@@ -1,0 +1,28 @@
+.searchBox {
+  display: flex;
+  padding: 0 5rem;
+  width: 50%;
+}
+.searchTextWhite {
+  font-weight: bold;
+  border: none;
+  width: 55%;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 1.2rem 5rem;
+  text-align: left;
+  font-size: 1rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgb(232, 232, 232);
+}
+.searchTextBlack {
+  font-weight: bold;
+  border: none;
+  width: 55%;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: rgb(44, 55, 67);
+  padding: 1.2rem 5rem;
+  text-align: left;
+  font-size: 1.2rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgb(44, 55, 67);
+}
