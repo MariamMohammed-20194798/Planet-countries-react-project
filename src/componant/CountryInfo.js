@@ -33,7 +33,7 @@ const CountryInfo = () => {
       {data && (
         <div className={classes.container2}>
           <div className={classes.imgBlock}>
-            <img className={classes.img} src={data.flag} alt="" />
+            <img className={classes.img} src={data.flags.png} alt="" />
           </div>
           <div className={classes.textBlock}>
             <div className={text}>{data.name}</div>

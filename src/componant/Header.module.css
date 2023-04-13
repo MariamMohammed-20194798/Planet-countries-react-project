@@ -22,14 +22,16 @@
 }
 .darkModeText {
   width: 15%;
-  padding: 0.4rem 6rem;
+  font-size: 1.1rem;
+  padding: 0.5rem 6rem;
   color: #ffff;
   text-align: right;
   text-decoration: none;
 }
 .whiteModeText {
   width: 15%;
-  padding: 0.4rem 6rem;
+  font-size: 1.1rem;
+  padding: 0.5rem 6rem;
   text-align: right;
   text-decoration: none;
 }
