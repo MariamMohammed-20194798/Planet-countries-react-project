@@ -1,29 +1,45 @@
 .container {
-  display: flex;
   width: 100%;
-  flex-direction: column;
-}
-.countriesList {
-  display: grid;
-  padding: 1rem 5rem;
-  border-radius: 5rem;
-  gap: 8rem;
-  grid-template-columns: repeat(4, minmax(0, 27rem));
 }
 
-.countryWhiteBlock {
-  border-radius: 0.5rem;
-  background-color: #fff;
-  text-decoration: none;
-  border-style: solid;
-  border-width: 0.2rem;
-  border-color: rgb(229, 231, 235);
+.count {
+  margin: 0 0 var(--space-lg);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
 }
-.countryDarkBlock {
-  border-radius: 0.5rem;
-  background-color: rgb(44, 55, 67);
+
+.count strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.countriesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cardLink {
+  display: block;
+  height: 100%;
   text-decoration: none;
-  border-style: solid;
-  border-width: 0.2rem;
-  border-color: rgb(44, 55, 67);
+  border-radius: var(--radius-lg);
+  outline: none;
+  transition: transform var(--transition-base);
+}
+
+.cardLink:hover {
+  transform: translateY(-4px);
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+.cardLink:active {
+  transform: translateY(-2px);
 }

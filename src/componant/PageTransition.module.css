@@ -1,0 +1,5 @@
+.page {
+  flex: 1;
+  width: 100%;
+  animation: pageEnter var(--transition-slow) ease-out;
+}

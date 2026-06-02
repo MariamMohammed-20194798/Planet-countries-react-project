@@ -1,111 +1,138 @@
-.containerWhite {
-  display: flex;
-  width: 100%;
-  justify-self: center;
-  flex-direction: column;
-  background-color: rgb(246, 246, 246);
-}
-.containerBlack {
-  display: flex;
-  width: 100%;
-  justify-self: center;
-  flex-direction: column;
-  background-color: rgb(30, 42, 55);
-}
-.container2 {
-  display: grid;
-  margin-bottom: 17.7rem;
-  grid-template-columns: repeat(2, minmax(0, 80rem));
-}
-.errMsg {
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-}
-.errMsgBlack {
-  font-size: 3rem;
-  color: white;
-  font-weight: bold;
-  text-align: center;
+.page {
+  padding-top: var(--space-xl);
 }
 
-.btnBlock {
-  width: 10%;
-  height: 10%;
-  padding: 3rem 8rem;
-}
-.btnWhite {
-  border: none;
-  font-size: 1.3rem;
-  padding: 0.5rem 1rem;
-  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgb(232, 232, 232);
-}
-.btnBlack {
-  border: none;
-  font-size: 1.3rem;
-  padding: 0.5rem 1rem;
-  color: white;
-  background-color: rgb(44, 55, 67);
-  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgb(44, 55, 67);
-}
-.textGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 35rem));
-}
-.imgBlock {
-  justify-self: center;
-  padding: 3rem 0;
-  width: 80%;
-}
-.img {
-  display: flex;
-  width: 100%;
-  height: 45vh;
-  border-radius: 0.4rem;
-}
-.textBlock {
-  padding: 6rem 0rem;
-}
-.textWhite {
-  font-weight: bold;
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: black;
-}
-.textBlack {
-  font-weight: bold;
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: white;
-}
-.text2Black {
-  color: white;
-  font-size: 1.2rem;
-  margin-bottom: 0rem;
-}
-.text2White {
-  color: black;
-  font-size: 1.2rem;
-  margin-bottom: 0rem;
+.backRow {
+  margin-bottom: var(--space-2xl);
 }
 
-.linkBlock {
-  flex-direction: row;
+.backBtn {
+  min-width: 6.5rem;
 }
-.linkWhite {
-  color: black;
+
+.detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+.flagColumn {
+  animation: fadeIn var(--transition-slow) ease-out;
+}
+
+.flag {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.name {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.factsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md) var(--space-xl);
+  margin: 0;
+}
+
+.fact {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.fact dt {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.125rem;
+}
+
+.fact dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.borders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.bordersLabel {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.borderChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.borderLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
   text-decoration: none;
-  padding: 1rem;
-  font-weight: bold;
-  text-shadow: 0.1rem 0.1rem 0.8rem black;
+  background: var(--bg-chip);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-xs);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
-.linkBlack {
-  color: white;
-  text-decoration: none;
-  padding: 1rem;
-  font-weight: bold;
-  text-shadow: 0.1rem 0.1rem 0.8rem white;
+
+.borderLink:hover {
+  background: var(--bg-chip-hover);
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
 }
-.arrow {
-  padding: 0 1rem;
+
+.borderLink:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.borderLink:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .detail {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .factsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .backRow {
+    margin-bottom: var(--space-xl);
+  }
 }

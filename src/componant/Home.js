@@ -1,27 +1,22 @@
 import useFetch from "./useFetch";
 import classes from "./Home.module.css";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import CountriesList from "./countriesList";
 import Search from "./Search";
 import FilterByRegion from "./FilterByRegion";
-import { DarkTheme } from "./DarkTheme";
+import StatePanel from "./ui/StatePanel";
+import { CountryGridSkeleton } from "./ui/Skeleton";
+import Reveal from "./ui/Reveal";
+
 const Home = () => {
-  const [fullURL, setFullURL] = useState("all");
+  const [fullURL, setFullURL] = useState("region/africa");
   const { data, error, isLoding } = useFetch(
     `https://restcountries.com/v2/${fullURL}`
   );
-  const blackTheme = useContext(DarkTheme);
-  const errMsg = blackTheme ? classes.errMsgBlack : classes.errMsg;
-  const container = blackTheme
-    ? classes.containerBlack
-    : classes.containerWhite;
-  const container2 = blackTheme
-    ? classes.container2Black
-    : classes.container2White;
 
-  const handleChange = (event) => {
-    if (event !== "") {
-      setFullURL(`name/${event}`);
+  const handleChange = (value) => {
+    if (value !== "") {
+      setFullURL(`name/${value}`);
     } else {
       setFullURL("all");
     }
@@ -31,16 +26,44 @@ const Home = () => {
     handleChange(event.target.value);
   };
 
+  const countries = Array.isArray(data) ? data : data ? [data] : [];
+
   return (
-    <div className={container}>
-      <div className={container2}>
-        <Search onInput={inputChangeHandler} blackTheme={blackTheme} />
-        <FilterByRegion onFullURL={setFullURL} blackTheme={blackTheme} />
-      </div>
-      {isLoding && <div className={errMsg}>Data is Loading</div>}
-      {error && <div className={errMsg}>{error}</div>}
-      {data && <CountriesList data={data} blackTheme={blackTheme} />}
+    <div className={classes.page}>
+      <Reveal>
+        <section className={classes.toolbar} aria-label="Search and filter">
+          <Search onInput={inputChangeHandler} />
+          <FilterByRegion onFullURL={setFullURL} />
+        </section>
+      </Reveal>
+
+      {isLoding && (
+        <div className={classes.content}>
+          <CountryGridSkeleton count={12} />
+        </div>
+      )}
+
+      {error && !isLoding && (
+        <StatePanel
+          variant="error"
+          title="Something went wrong"
+          message={error}
+        />
+      )}
+
+      {!isLoding && !error && countries.length === 0 && (
+        <StatePanel
+          variant="empty"
+          title="No countries found"
+          message="Try adjusting your search or selecting a different region."
+        />
+      )}
+
+      {!isLoding && !error && countries.length > 0 && (
+        <CountriesList data={countries} />
+      )}
     </div>
   );
 };
+
 export default Home;

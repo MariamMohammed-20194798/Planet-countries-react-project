@@ -1,22 +1,21 @@
 import classes from "./Search.module.css";
 import { HiOutlineSearch } from "react-icons/hi";
-const Search = ({ onInput, blackTheme }) => {
-  const searchText = blackTheme
-    ? classes.searchTextBlack
-    : classes.searchTextWhite;
-  const searchIcon = blackTheme
-    ? classes.searchIconBlack
-    : classes.searchIconWhite;
-  return (
-    <div className={classes.searchBox}>
-      <HiOutlineSearch className={searchIcon} />
-      <input
-        className={searchText}
-        type="text"
-        placeholder="Search for a country..."
-        onChange={onInput}
-      />
-    </div>
-  );
-};
+
+const Search = ({ onInput }) => (
+  <div className={classes.searchBox}>
+    <label htmlFor="country-search" className="sr-only">
+      Search for a country
+    </label>
+    <HiOutlineSearch className={classes.searchIcon} aria-hidden="true" />
+    <input
+      id="country-search"
+      className={classes.searchInput}
+      type="search"
+      placeholder="Search for a country…"
+      onChange={onInput}
+      autoComplete="off"
+    />
+  </div>
+);
+
 export default Search;
