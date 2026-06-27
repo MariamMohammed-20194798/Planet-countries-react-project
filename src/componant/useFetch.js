@@ -1,4 +1,25 @@
 import { useEffect, useState } from "react";
+import { API_KEY, USE_PROXY } from "../config/api";
+import { normalizeCountry } from "../utils/countryAdapter";
+
+const PAGE_SIZE = 100;
+
+const getErrorMessage = (json, status) => {
+  if (json?.errors?.[0]?.message) {
+    return json.errors[0].message;
+  }
+
+  if (status === 401) {
+    return "Invalid or missing API key.";
+  }
+
+  return "Could not fetch data. Please try again.";
+};
+
+const withPaginationParams = (url, limit, offset) => {
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}limit=${limit}&offset=${offset}`;
+};
 
 const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -13,13 +34,35 @@ const useFetch = (url) => {
       setError(null);
 
       try {
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error("Could not fetch data. Please try again.");
+        let allCountries = [];
+        let offset = 0;
+
+        while (true) {
+          const paginatedUrl = withPaginationParams(url, PAGE_SIZE, offset);
+          const headers = {};
+          if (API_KEY && !USE_PROXY) {
+            headers.Authorization = `Bearer ${API_KEY}`;
+          }
+
+          const res = await fetch(paginatedUrl, { headers });
+          const json = await res.json();
+
+          if (!res.ok || json.errors) {
+            throw new Error(getErrorMessage(json, res.status));
+          }
+
+          const { objects = [], meta } = json.data ?? {};
+          allCountries = allCountries.concat(objects.map(normalizeCountry));
+
+          if (!meta?.more) {
+            break;
+          }
+
+          offset += meta.count;
         }
-        const json = await res.json();
+
         if (!cancelled) {
-          setData(json);
+          setData(allCountries);
           setLoading(false);
         }
       } catch (err) {

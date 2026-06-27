@@ -6,19 +6,19 @@ import Button from "./ui/Button";
 import StatePanel from "./ui/StatePanel";
 import { CountryDetailSkeleton } from "./ui/Skeleton";
 import Reveal from "./ui/Reveal";
+import { buildCountryUrl } from "../config/api";
 
 const CountryInfo = () => {
   const { code } = useParams();
   const navigate = useNavigate();
-  const { data, error, isLoding } = useFetch(
-    `https://restcountries.com/v2/alpha/${code}`
-  );
+  const { data, error, isLoding } = useFetch(buildCountryUrl(code));
+  const country = data?.[0];
 
   const languages =
-    data?.languages?.map((language) => language.name).join(", ") ?? "—";
+    country?.languages?.map((language) => language.name).join(", ") ?? "—";
 
   const currencies =
-    data?.currencies?.map((currency) => currency.name).join(", ") ?? "—";
+    country?.currencies?.map((currency) => currency.name).join(", ") ?? "—";
 
   return (
     <div className={classes.page}>
@@ -45,42 +45,42 @@ const CountryInfo = () => {
         />
       )}
 
-      {data && !isLoding && (
+      {country && !isLoding && (
         <Reveal delay={80}>
           <div className={classes.detail}>
             <div className={classes.flagColumn}>
               <img
                 className={classes.flag}
-                src={data.flags.png}
-                alt={`Flag of ${data.name}`}
+                src={country.flags.png}
+                alt={`Flag of ${country.name}`}
               />
             </div>
             <div className={classes.infoColumn}>
-              <h1 className={classes.name}>{data.name}</h1>
+              <h1 className={classes.name}>{country.name}</h1>
               <dl className={classes.factsGrid}>
                 <div className={classes.fact}>
                   <dt>Native Name</dt>
-                  <dd>{data.nativeName ?? "—"}</dd>
+                  <dd>{country.nativeName ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Population</dt>
-                  <dd>{data.population?.toLocaleString("en-US") ?? "—"}</dd>
+                  <dd>{country.population?.toLocaleString("en-US") ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Region</dt>
-                  <dd>{data.region ?? "—"}</dd>
+                  <dd>{country.region ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Sub Region</dt>
-                  <dd>{data.subregion ?? "—"}</dd>
+                  <dd>{country.subregion ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Capital</dt>
-                  <dd>{data.capital ?? "—"}</dd>
+                  <dd>{country.capital ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Top Level Domain</dt>
-                  <dd>{data.topLevelDomain?.join(", ") ?? "—"}</dd>
+                  <dd>{country.topLevelDomain?.join(", ") ?? "—"}</dd>
                 </div>
                 <div className={classes.fact}>
                   <dt>Currencies</dt>
@@ -90,19 +90,19 @@ const CountryInfo = () => {
                   <dt>Languages</dt>
                   <dd>{languages}</dd>
                 </div>
-                {data.area != null && (
+                {country.area != null && (
                   <div className={classes.fact}>
                     <dt>Area</dt>
-                    <dd>{data.area.toLocaleString("en-US")} km²</dd>
+                    <dd>{country.area.toLocaleString("en-US")} km²</dd>
                   </div>
                 )}
               </dl>
 
-              {data.borders?.length > 0 && (
+              {country.borders?.length > 0 && (
                 <div className={classes.borders}>
                   <span className={classes.bordersLabel}>Border Countries</span>
                   <div className={classes.borderChips}>
-                    {data.borders.map((border) => (
+                    {country.borders.map((border) => (
                       <Link
                         key={border}
                         to={`/${border}`}

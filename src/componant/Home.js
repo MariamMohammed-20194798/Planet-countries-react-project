@@ -7,12 +7,11 @@ import FilterByRegion from "./FilterByRegion";
 import StatePanel from "./ui/StatePanel";
 import { CountryGridSkeleton } from "./ui/Skeleton";
 import Reveal from "./ui/Reveal";
+import { buildCountriesUrl } from "../config/api";
 
 const Home = () => {
   const [fullURL, setFullURL] = useState("region/africa");
-  const { data, error, isLoding } = useFetch(
-    `https://restcountries.com/v2/${fullURL}`
-  );
+  const { data, error, isLoding } = useFetch(buildCountriesUrl(fullURL));
 
   const handleChange = (value) => {
     if (value !== "") {
@@ -26,7 +25,7 @@ const Home = () => {
     handleChange(event.target.value);
   };
 
-  const countries = Array.isArray(data) ? data : data ? [data] : [];
+  const countries = data ?? [];
 
   return (
     <div className={classes.page}>
