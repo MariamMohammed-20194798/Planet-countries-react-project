@@ -3,6 +3,7 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import classes from "./FilterByRegion.module.css";
 
 const REGIONS = [
+  { value: "all", label: "All" },
   { value: "africa", label: "Africa" },
   { value: "americas", label: "Americas" },
   { value: "asia", label: "Asia" },
@@ -10,7 +11,7 @@ const REGIONS = [
   { value: "oceania", label: "Oceania" },
 ];
 
-const DEFAULT_REGION = "africa";
+const DEFAULT_REGION = "all";
 
 const FilterByRegion = ({ onFullURL }) => {
   const [selectedOption, setSelectedOption] = useState(DEFAULT_REGION);
@@ -18,7 +19,11 @@ const FilterByRegion = ({ onFullURL }) => {
   const dropdownHandler = (event) => {
     const region = event.target.value;
     setSelectedOption(region);
-    onFullURL(`region/${region}`);
+    if (region === "all") {
+      onFullURL("");
+    } else {
+      onFullURL(`region/${region}`);
+    }
   };
 
   return (

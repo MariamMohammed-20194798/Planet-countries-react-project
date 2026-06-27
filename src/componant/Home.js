@@ -10,7 +10,7 @@ import Reveal from "./ui/Reveal";
 import { buildCountriesUrl } from "../config/api";
 
 const Home = () => {
-  const [fullURL, setFullURL] = useState("region/africa");
+  const [fullURL, setFullURL] = useState("all");
   const { data, error, isLoding } = useFetch(buildCountriesUrl(fullURL));
 
   const handleChange = (value) => {
